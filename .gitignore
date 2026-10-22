@@ -1,0 +1,4 @@
+*.log
+terminal-app/build/
+*.keystore
+*.jks

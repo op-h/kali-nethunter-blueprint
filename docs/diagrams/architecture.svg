@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="560" viewBox="0 0 880 560" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <rect width="880" height="560" rx="14" fill="#0B1020"/>
+  <text x="440" y="40" text-anchor="middle" fill="#E6EDF3" font-size="23" font-weight="700">Kali NetHunter on a rooted phone — how the pieces fit</text>
+  <text x="440" y="66" text-anchor="middle" fill="#8B97A7" font-size="13">Samsung Galaxy Note 9 (crownlte) · LineageOS 20 / Android 13 · Magisk</text>
+
+  <!-- App layer -->
+  <rect x="40" y="92" width="800" height="104" rx="10" fill="#141C33" stroke="#263150"/>
+  <text x="60" y="116" fill="#8B97A7" font-size="12" font-weight="600">USER SPACE · APPS</text>
+  <rect x="60" y="126" width="230" height="58" rx="8" fill="#10233A" stroke="#1793D1"/>
+  <text x="175" y="150" text-anchor="middle" fill="#E6EDF3" font-size="14" font-weight="700">Kali NetHunter (launcher)</text>
+  <text x="175" y="170" text-anchor="middle" fill="#8B97A7" font-size="11">com.oph.nethunter · one tap</text>
+  <rect x="315" y="126" width="230" height="58" rx="8" fill="#141C33" stroke="#263150"/>
+  <text x="430" y="150" text-anchor="middle" fill="#E6EDF3" font-size="14" font-weight="700">NetHunter Terminal</text>
+  <text x="430" y="170" text-anchor="middle" fill="#8B97A7" font-size="11">com.offsec.nhterm (NeoTerm)</text>
+  <rect x="570" y="126" width="250" height="58" rx="8" fill="#141C33" stroke="#263150"/>
+  <text x="695" y="150" text-anchor="middle" fill="#E6EDF3" font-size="14" font-weight="700">NetHunter app + Store</text>
+  <text x="695" y="170" text-anchor="middle" fill="#8B97A7" font-size="11">HID / KeX / chroot manager</text>
+
+  <!-- chroot layer -->
+  <rect x="40" y="214" width="800" height="104" rx="10" fill="#141C33" stroke="#263150"/>
+  <text x="60" y="238" fill="#8B97A7" font-size="12" font-weight="600">KALI CHROOT · /data/local/nhsystem/kali-arm64</text>
+  <rect x="60" y="248" width="360" height="58" rx="8" fill="#10233A" stroke="#1793D1"/>
+  <text x="240" y="272" text-anchor="middle" fill="#E6EDF3" font-size="14" font-weight="700">Enhanced zsh (op-h)</text>
+  <text x="240" y="292" text-anchor="middle" fill="#8B97A7" font-size="11">Kali prompt · autosuggest · nh / tools menu</text>
+  <rect x="440" y="248" width="380" height="58" rx="8" fill="#141C33" stroke="#263150"/>
+  <text x="630" y="272" text-anchor="middle" fill="#E6EDF3" font-size="14" font-weight="700">Kali tooling</text>
+  <text x="630" y="292" text-anchor="middle" fill="#8B97A7" font-size="11">nmap · metasploit · aircrack-ng · wifite · sqlmap …</text>
+
+  <!-- root layer -->
+  <rect x="40" y="336" width="800" height="70" rx="10" fill="#141C33" stroke="#263150"/>
+  <text x="60" y="360" fill="#8B97A7" font-size="12" font-weight="600">ROOT BROKER</text>
+  <rect x="60" y="368" width="760" height="28" rx="6" fill="#231018" stroke="#D81A3F"/>
+  <text x="440" y="387" text-anchor="middle" fill="#F2C9D3" font-size="13" font-weight="700">Magisk  su  (/debug_ramdisk/su)  —  grants root to the apps &amp; bootkali chroot scripts</text>
+
+  <!-- kernel layer -->
+  <rect x="40" y="424" width="800" height="110" rx="10" fill="#101A14" stroke="#1E7D4F"/>
+  <text x="60" y="448" fill="#58C98A" font-size="12" font-weight="700">CUSTOM NETHUNTER KERNEL  ·  Linux 4.9.118  (the part we compiled)</text>
+  <rect x="60" y="458" width="243" height="64" rx="8" fill="#13241A" stroke="#1E7D4F"/>
+  <text x="181" y="482" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">USB gadget</text>
+  <text x="181" y="502" text-anchor="middle" fill="#8B97A7" font-size="11">f_hid (BadUSB), mass-storage</text>
+  <rect x="318" y="458" width="243" height="64" rx="8" fill="#13241A" stroke="#1E7D4F"/>
+  <text x="439" y="482" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">mac80211 stack</text>
+  <text x="439" y="502" text-anchor="middle" fill="#8B97A7" font-size="11">monitor mode + injection patch</text>
+  <rect x="576" y="458" width="244" height="64" rx="8" fill="#13241A" stroke="#1E7D4F"/>
+  <text x="698" y="482" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">USB Wi-Fi drivers</text>
+  <text x="698" y="502" text-anchor="middle" fill="#8B97A7" font-size="11">ath9k_htc · rtl8xxxu · rt2800usb</text>
+
+  <!-- connectors -->
+  <path d="M175 184 L175 214" stroke="#1793D1" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M430 184 L240 248" stroke="#3A4766" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M440 318 L440 336" stroke="#3A4766" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M440 406 L440 424" stroke="#3A4766" stroke-width="2" marker-end="url(#a)"/>
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#6B7A90"/>
+    </marker>
+  </defs>
+</svg>

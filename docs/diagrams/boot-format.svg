@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="470" viewBox="0 0 880 470" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <rect width="880" height="470" rx="14" fill="#0B1020"/>
+  <text x="440" y="38" text-anchor="middle" fill="#E6EDF3" font-size="22" font-weight="700">Boot image anatomy — the bootloop trap</text>
+  <text x="440" y="62" text-anchor="middle" fill="#8B97A7" font-size="13">Swap ONLY the kernel. Keep the Magisk ramdisk and the DTBH device tree. Match the kernel format.</text>
+
+  <!-- stock boot image -->
+  <text x="150" y="100" fill="#8B97A7" font-size="12" font-weight="600">STOCK boot.img (what works)</text>
+  <rect x="60" y="110" width="330" height="56" rx="7" fill="#101A14" stroke="#1E7D4F"/>
+  <text x="225" y="134" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">kernel = RAW arm64 Image</text>
+  <text x="225" y="153" text-anchor="middle" fill="#58C98A" font-size="11" font-family="monospace">magic 'ARMd' @0x38 · NOT gzip</text>
+  <rect x="60" y="172" width="330" height="40" rx="7" fill="#141C33" stroke="#263150"/>
+  <text x="225" y="197" text-anchor="middle" fill="#E6EDF3" font-size="12">ramdisk  (Magisk — keep for root)</text>
+  <rect x="60" y="218" width="330" height="40" rx="7" fill="#10233A" stroke="#1793D1"/>
+  <text x="225" y="243" text-anchor="middle" fill="#E6EDF3" font-size="12">extra = DTBH device-tree container</text>
+
+  <!-- arrows -->
+  <path d="M400 184 L470 184" stroke="#58C98A" stroke-width="2.5" marker-end="url(#g)"/>
+  <text x="435" y="176" text-anchor="middle" fill="#58C98A" font-size="11">boots</text>
+
+  <!-- WRONG -->
+  <text x="650" y="100" fill="#8B97A7" font-size="12" font-weight="600">WRONG rebuild (bootloops)</text>
+  <rect x="490" y="110" width="330" height="56" rx="7" fill="#231018" stroke="#D81A3F"/>
+  <text x="655" y="134" text-anchor="middle" fill="#F2C9D3" font-size="13" font-weight="700">kernel = Image.gz-dtb (gzip)</text>
+  <text x="655" y="153" text-anchor="middle" fill="#F2A3B4" font-size="11" font-family="monospace">loader jumps into gzip bytes → crash</text>
+  <rect x="490" y="172" width="330" height="40" rx="7" fill="#141C33" stroke="#263150"/>
+  <text x="655" y="197" text-anchor="middle" fill="#E6EDF3" font-size="12">ramdisk</text>
+  <rect x="490" y="218" width="330" height="40" rx="7" fill="#141C33" stroke="#263150"/>
+  <text x="655" y="243" text-anchor="middle" fill="#E6EDF3" font-size="12">extra (DTBH)</text>
+  <path d="M655 258 L655 300" stroke="#D81A3F" stroke-width="2.5" marker-end="url(#r)"/>
+  <text x="655" y="320" text-anchor="middle" fill="#F2A3B4" font-size="12" font-weight="700">↻ stuck on Samsung logo</text>
+
+  <!-- RIGHT -->
+  <path d="M225 258 L225 300" stroke="#58C98A" stroke-width="2.5" marker-end="url(#g)"/>
+  <text x="225" y="320" text-anchor="middle" fill="#58C98A" font-size="12" font-weight="700">✓ boots the NetHunter kernel</text>
+
+  <!-- how to check -->
+  <rect x="60" y="350" width="760" height="92" rx="10" fill="#141C33" stroke="#263150"/>
+  <text x="80" y="374" fill="#8B97A7" font-size="12" font-weight="600">HOW TO CHECK YOUR DEVICE'S FORMAT</text>
+  <text x="80" y="399" fill="#E6EDF3" font-size="12.5" font-family="monospace">magiskboot unpack boot.img</text>
+  <text x="80" y="420" fill="#E6EDF3" font-size="12.5" font-family="monospace">xxd -s 0x38 -l4 kernel  →  41524d64 ('ARMd') = RAW   |   head 1f8b08 = gzip</text>
+  <defs>
+    <marker id="g" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#58C98A"/></marker>
+    <marker id="r" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#D81A3F"/></marker>
+  </defs>
+</svg>
