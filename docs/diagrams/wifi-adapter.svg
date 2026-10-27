@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="g" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.5 L0,7 Z" fill="#58C98A"/></marker>
+    <marker id="r" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.5 L0,7 Z" fill="#D81A3F"/></marker>
+    <marker id="n" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.5 L0,7 Z" fill="#6B7A90"/></marker>
+  </defs>
+
+  <rect width="900" height="560" rx="14" fill="#0B1020"/>
+  <text x="450" y="38" text-anchor="middle" fill="#E6EDF3" font-size="22" font-weight="700">Getting Wi-Fi monitor mode — two paths, one that works</text>
+  <text x="450" y="62" text-anchor="middle" fill="#8B97A7" font-size="13">The phone's internal chip can't; an external USB adapter can — once the driver is built correctly.</text>
+
+  <!-- ===== LEFT: external (works) ===== -->
+  <rect x="40" y="88" width="400" height="430" rx="12" fill="#101A14" stroke="#1E7D4F"/>
+  <text x="240" y="116" text-anchor="middle" fill="#58C98A" font-size="15" font-weight="700">★ EXTERNAL USB ADAPTER — WORKS</text>
+
+  <rect x="70" y="134" width="340" height="52" rx="8" fill="#13241A" stroke="#1E7D4F"/>
+  <text x="240" y="156" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">RTL8812BU  (0bda:b812)</text>
+  <text x="240" y="175" text-anchor="middle" fill="#8B97A7" font-size="11">plugged via USB-C OTG</text>
+
+  <rect x="70" y="200" width="340" height="70" rx="8" fill="#141C33" stroke="#263150"/>
+  <text x="240" y="223" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">Build rtl88x2bu as a loadable module</text>
+  <text x="240" y="243" text-anchor="middle" fill="#8B97A7" font-size="10.5">against kernel out/ · ARCH=arm64 · clang + GNU as</text>
+  <text x="240" y="260" text-anchor="middle" fill="#8B97A7" font-size="10.5">strip -mhard-float · KSRC override · no reflash</text>
+
+  <rect x="70" y="284" width="340" height="66" rx="8" fill="#231018" stroke="#D81A3F"/>
+  <text x="240" y="307" text-anchor="middle" fill="#F2C9D3" font-size="12.5" font-weight="700">THE CRITICAL FIX: -fno-stack-protector</text>
+  <text x="240" y="326" text-anchor="middle" fill="#F2A3B4" font-size="10" font-family="monospace">else clang emits mrs x20,tpidr_el0 (userspace canary)</text>
+  <text x="240" y="341" text-anchor="middle" fill="#F2A3B4" font-size="10" font-family="monospace">→ PAN fault at rtw_drv_init → reboot on probe</text>
+
+  <rect x="70" y="364" width="340" height="44" rx="8" fill="#13241A" stroke="#1E7D4F"/>
+  <text x="240" y="391" text-anchor="middle" fill="#E6EDF3" font-size="12.5">Install as Magisk module → insmod at boot</text>
+
+  <rect x="70" y="422" width="340" height="44" rx="8" fill="#10233A" stroke="#1793D1"/>
+  <text x="240" y="449" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">wlan1 appears · monitor + injection</text>
+
+  <rect x="70" y="480" width="340" height="28" rx="7" fill="#102A1C" stroke="#1E7D4F"/>
+  <text x="240" y="499" text-anchor="middle" fill="#8FE3B4" font-size="12" font-weight="700">✓ airmon-ng / airodump / wifite</text>
+
+  <path d="M240 186 L240 200" stroke="#6B7A90" stroke-width="2" marker-end="url(#n)"/>
+  <path d="M240 270 L240 284" stroke="#6B7A90" stroke-width="2" marker-end="url(#n)"/>
+  <path d="M240 350 L240 364" stroke="#D81A3F" stroke-width="2" marker-end="url(#r)"/>
+  <path d="M240 408 L240 422" stroke="#58C98A" stroke-width="2" marker-end="url(#g)"/>
+  <path d="M240 466 L240 480" stroke="#58C98A" stroke-width="2" marker-end="url(#g)"/>
+
+  <!-- ===== RIGHT: internal (dead end) ===== -->
+  <rect x="460" y="88" width="400" height="430" rx="12" fill="#1A1420" stroke="#5A3A52"/>
+  <text x="660" y="116" text-anchor="middle" fill="#C98ABF" font-size="15" font-weight="700">INTERNAL BCM4361 — DEAD END</text>
+
+  <rect x="490" y="134" width="340" height="52" rx="8" fill="#241A2E" stroke="#5A3A52"/>
+  <text x="660" y="156" text-anchor="middle" fill="#E6EDF3" font-size="13" font-weight="700">Broadcom BCM4361 (FullMAC)</text>
+  <text x="660" y="175" text-anchor="middle" fill="#8B97A7" font-size="11">bcmdhd driver · wlan0</text>
+
+  <rect x="490" y="200" width="340" height="46" rx="8" fill="#141C33" stroke="#263150"/>
+  <text x="660" y="222" text-anchor="middle" fill="#E6EDF3" font-size="12">Kernel patch exposes monitor iftype ✓</text>
+  <text x="660" y="239" text-anchor="middle" fill="#8B97A7" font-size="10.5">wlmon ioctl creates radiotap0 ✓</text>
+
+  <rect x="490" y="260" width="340" height="46" rx="8" fill="#231018" stroke="#D81A3F"/>
+  <text x="660" y="282" text-anchor="middle" fill="#F2C9D3" font-size="12" font-weight="700">concurrent monitor vif rejected (-22)</text>
+  <text x="660" y="299" text-anchor="middle" fill="#F2A3B4" font-size="10.5">FullMAC can't do managed + monitor at once</text>
+
+  <rect x="490" y="320" width="340" height="46" rx="8" fill="#231018" stroke="#D81A3F"/>
+  <text x="660" y="342" text-anchor="middle" fill="#F2C9D3" font-size="12" font-weight="700">station firmware → 0 frames captured</text>
+  <text x="660" y="359" text-anchor="middle" fill="#F2A3B4" font-size="10.5">monitor turns on but delivers nothing</text>
+
+  <rect x="490" y="380" width="340" height="56" rx="8" fill="#231018" stroke="#D81A3F"/>
+  <text x="660" y="402" text-anchor="middle" fill="#F2C9D3" font-size="12" font-weight="700">monitor firmware won't load</text>
+  <text x="660" y="420" text-anchor="middle" fill="#F2A3B4" font-size="10" font-family="monospace">firmware_path knob broken · bricks wifi till reboot</text>
+
+  <rect x="490" y="452" width="340" height="40" rx="8" fill="#241A2E" stroke="#5A3A52"/>
+  <text x="660" y="477" text-anchor="middle" fill="#C98ABF" font-size="12.5" font-weight="700">✗ not usable without nexmon</text>
+
+  <path d="M660 186 L660 200" stroke="#6B7A90" stroke-width="2" marker-end="url(#n)"/>
+  <path d="M660 246 L660 260" stroke="#D81A3F" stroke-width="2" marker-end="url(#r)"/>
+  <path d="M660 366 L660 380" stroke="#D81A3F" stroke-width="2" marker-end="url(#r)"/>
+  <path d="M660 436 L660 452" stroke="#D81A3F" stroke-width="2" marker-end="url(#r)"/>
+
+  <!-- footnote -->
+  <text x="450" y="542" text-anchor="middle" fill="#6B7A90" font-size="11">Note 9 has one USB-C port and cuts OTG power when the screen sleeps — keep the screen awake, use wireless ADB while the adapter is in.</text>
+</svg>
